@@ -1,0 +1,96 @@
+/* Video background */
+#bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #432818;
+}
+
+.login-card {
+    background-color: #f9e4d4;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    margin: 6rem auto;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.login-card h2 {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    border: 2px solid #432818;
+    border-radius: 25px;
+    padding: 10px 15px;
+    margin-top: 5px;
+    outline: none;
+    font-size: 14px;
+    background-color: #fff8f0;
+}
+
+button {
+    background-color: #432818;
+    color: #fff8f0;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    width: 100%;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #6f1d1b;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: .5rem;
+    font-size: 13px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #6f1d1b;
+    color: #f9e4d4;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.cat-logo {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.logo a {
+    display: none; /* sembunyikan credit link */
+}
