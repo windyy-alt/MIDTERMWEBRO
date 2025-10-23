@@ -1,42 +1,44 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-
+  
     public function index()
     {
-        $categories = Category::orderBy('id', 'asc')->get();
+        $categories = Category::all();
         return view('category', compact('categories'));
     }
 
+
     public function create()
     {
-        return response()->json(['message' => 'Category creation form']);
+        return view('category_create');
     }
 
-
+   
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|unique:categories,name'
         ]);
 
-        $category = Category::create([
+        Category::create([
             'name' => $request->name
         ]);
 
-        return response()->json($category);
+        return redirect()->route('category.index')->with('success', 'Category added successfully!');
     }
 
+  
     public function edit(Category $category)
     {
-        return response()->json($category);
+        return view('category_edit', compact('category'));
     }
+
 
     public function update(Request $request, Category $category)
     {
@@ -48,12 +50,13 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
 
-        return response()->json($category);
+        return redirect()->route('category.index')->with('success', 'Category updated successfully!');
     }
 
+ 
     public function destroy(Category $category)
     {
         $category->delete();
-        return response()->json(['message' => 'Category deleted successfully']);
+        return redirect()->route('category.index')->with('success', 'Category deleted successfully!');
     }
 }

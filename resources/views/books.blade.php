@@ -158,11 +158,14 @@
             margin-bottom: 15px;
         }
 
+        
         footer {
             text-align: center;
-            color: #ffb84d;
-            background-color: #7a1212;
-            padding: 8px 0;
+            background-color: #7c1313;
+            color: #fd8916;
+            padding: 8px;
+            width: 100%;
+            font-size: 13px;
             position: fixed;
             width: 100%;
             bottom: 0;
@@ -287,6 +290,7 @@
         <button type="submit" class="add-book-btn">Save</button>
     </form>
 
+
     <table>
         <thead>
             <tr>
@@ -319,11 +323,11 @@
 
 
                      <td class="action-buttons">
-                        <form action="{{ route('books.update', $book->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="edit-btn">Update</button>
-                        </form>
+                            <button type="button" class="edit-btn"
+                                onclick="editBook('{{ $book->id }}', '{{ addslashes($book->title) }}', '{{ addslashes($book->author) }}', '{{ $book->category_id }}')">
+                                Update
+                            </button>
+
 
 
                         <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="margin-top: 5px; display:inline;">
@@ -344,15 +348,40 @@
 
 </div>
 
-<footer>
-    Copyright © Amimir Library
-</footer>
+  <footer>
+    <p>© Amimir Group | Created for ETS</p>
+  </footer>
 
 <script>
     function toggleForm() {
         const form = document.getElementById('addBookForm');
         form.style.display = (form.style.display === 'block') ? 'none' : 'block';
     }
+
+   
+        function editBook(id, title, author, category_id) {
+            const form = document.getElementById('addBookForm');
+            form.style.display = 'block'; 
+           
+            form.action = `/books/${id}`;
+
+          
+            let methodInput = document.createElement('input');
+            methodInput.type = 'hidden';
+            methodInput.name = '_method';
+            methodInput.value = 'PUT';
+            form.appendChild(methodInput);
+
+          
+            form.querySelector('input[name="title"]').value = title;
+            form.querySelector('input[name="author"]').value = author;
+            form.querySelector('select[name="category_id"]').value = category_id;
+
+           
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Update Book';
+        }
+
 </script>
 </body>
 </html>
