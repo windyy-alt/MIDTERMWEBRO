@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amimir Library - Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -100,6 +103,7 @@
             background: none;
             border: none;
             font-size: 1.3rem;
+            font-family: "Libre Caslon Display", serif;
         }
 
         nav .nav-link h2:hover {
@@ -109,6 +113,7 @@
             border-radius: 30px;
             font-size: 1rem;
             font-weight: bold;
+            font-family: "Libre Caslon Display", serif;
         }
 
 
@@ -225,6 +230,12 @@
 
         .alert {
             border-radius: 15px;
+        }
+
+        .libre-caslon-display-regular {
+            font-family: "Libre Caslon Display", serif;
+            font-weight: 400;
+            font-style: normal;
         }
     </style>
 </head>

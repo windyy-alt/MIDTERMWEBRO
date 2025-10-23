@@ -210,6 +210,12 @@
       background-color: rgba(255, 255, 255, 0.1);
       transition: 0.3s;
     }
+
+    .libre-caslon-display-regular {
+      font-family: "Libre Caslon Display", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
   </style>
 </head>
 
@@ -229,8 +235,8 @@
     <ul>
       <li><a href="{{ route('books.index') }}">Manage Books</a></li>
       <li><a href="{{ route('category.index')}}">Manage Categories</a></li>
-      <li><a href="#">Manage Members</a></li>
-      <li><a href="#">Manage Borrows</a></li>
+      <li><a href="{{ route('member.index')}}">Manage Members</a></li>
+      <li><a href="{{ route('borrow.index')}}">Manage Borrows</a></li>
       <li><a href="{{ route('profile.edit') }}">Profile</a></li>
       <li>
         <form action="{{ route('logout') }}" method="POST" style="display:inline;">
@@ -283,7 +289,7 @@
         <tr><td>4</td><td>Borrow CRUD</td><td>Add borrow records (relations: member + book + staff user)</td><td><strong>Manage Borrows</strong></td></tr>
         <tr><td>5</td><td>Return Book</td><td>Update borrow status from “Borrowed” → “Returned”</td><td><strong>Manage Borrows</strong> → Return button</td></tr>
         <tr><td>6</td><td>Upload Book Cover</td><td>Upload cover image for each book</td><td><strong>Manage Books</strong></td></tr>
-        <tr><td>7</td><td>Book Filter & Search</td><td>Search books by title / filter by category</td><td><strong>Manage Books</strong></td></tr>
+        <tr><td>7</td><td>Update User Profile</td><td>Change password and delete account</td><td><strong>Profile</strong></td></tr>
         <tr><td>8</td><td>Reports / Export Data</td><td>Export borrow records to CSV / PDF</td><td><strong>Manage Borrows</strong></td></tr>
       </tbody>
     </table>

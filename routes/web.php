@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\BorrowController;
 use App\Models\Book;
 
 Route::get('/', function () {
@@ -13,7 +15,6 @@ Route::get('/', function () {
 })->name('register');
 
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
-
 Route::get('/login', function () {
     return view('login');
 })->name('login');
@@ -22,7 +23,7 @@ Route::get('/login', function () {
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])
+Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard')
     ->middleware('auth');
 
@@ -39,6 +40,12 @@ Route::middleware('auth')->group(function () {
 });
 
  Route::resource('category', CategoryController::class);
+ Route::resource('member', MemberController::class);
+
+ 
+    Route::get('/borrow/export-csv', [BorrowController::class, 'exportCSV'])->name('borrow.exportCSV');
+    Route::resource('borrow', BorrowController::class);
+    Route::patch('borrows/{borrow}/return', [BorrowController::class, 'returnBook'])->name('borrows.return');
 
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

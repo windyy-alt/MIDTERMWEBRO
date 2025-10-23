@@ -1,5 +1,3 @@
-update password:
-
 <form method="POST" action="{{ route('profile.update.password') }}">
     @csrf
     @method('PATCH')

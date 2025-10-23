@@ -1,5 +1,3 @@
-delete:
-
 <form method="POST" action="{{ route('profile.destroy') }}">
     @csrf
     @method('DELETE')

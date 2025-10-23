@@ -22,23 +22,23 @@
         }
 
         #bg-video {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        z-index: -2;
-        object-fit: cover;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -2;
+            object-fit: cover;
         }
 
         .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: -1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
         }
 
         nav {
@@ -133,6 +133,7 @@
             padding: 10px;
             text-align: left;
             border: 1px solid #ffb84d;
+            color: #fff
         }
 
         th {
@@ -144,8 +145,10 @@
         td img {
             width: 60px;
             height: 80px;
+            object-fit: cover;
             border-radius: 6px;
         }
+
 
         .add-book-btn {
             background-color: #ffb84d;
@@ -156,6 +159,12 @@
             cursor: pointer;
             font-weight: bold;
             margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .add-book-btn:hover {
+            background-color: #f9cb87;
+            color: #7a1212;
         }
 
         
@@ -183,6 +192,7 @@
         label {
             display: block;
             margin-bottom: 5px;
+            color: #ffd27f;
         }
 
         input, select {
@@ -223,6 +233,12 @@
             background-color: #e74c3c;
         }
 
+        .libre-caslon-display-regular {
+            font-family: "Libre Caslon Display", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
     </style>
 </head>
 <body>
@@ -235,16 +251,20 @@
     <div class="overlay"></div>
 
   <nav>
-    <div class="logo">
-      <img src="{{ asset('images/image.png') }}" alt="Amimir Logo" class="logo-img">
-      <h2>Amimir Library</h2>
-    </div>
+        <div class="logo">
+        <a href="{{ route('dashboard') }}" style="display: flex; align-items: center; gap: 20px; text-decoration: none;">
+            <img src="{{ asset('images/image.png') }}" alt="Amimir Logo" class="logo-img">
+            <h2 style="color:#fd8916;">Amimir Library</h2>
+        </a>
+        </div>
+
+
     <ul>
       <li><a href="{{ route('books.index') }}">Manage Books</a></li>
-      <li><a href="#">Manage Categories</a></li>
-      <li><a href="#">Manage Members</a></li>
-      <li><a href="#">Manage Borrows</a></li>
-      <li><a href="#">Profile</a></li>
+      <li><a href="{{ route('category.index')}}">Manage Categories</a></li>
+      <li><a href="{{ route('member.index')}}">Manage Members</a></li>
+      <li><a href="{{ route('borrow.index')}}">Manage Borrows</a></li>
+      <li><a href="{{ route('profile.edit') }}">Profile</a></li>
       <li>
         <form action="{{ route('logout') }}" method="POST" style="display:inline;">
           @csrf
@@ -257,7 +277,7 @@
 
 
 <div class="container">
-    <h2>Book Information</h2>
+    <h2>BOOK INFORMATION</h2>
 
     <button class="add-book-btn" onclick="toggleForm()">+ Add Book</button>
 

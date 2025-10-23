@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amimir Library - Register</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -66,7 +69,9 @@
 
     .logo h2 {
       font-weight: 700;
+      font-size: 3rem;
       color: #000;
+      font-family: "Libre Caslon Display", serif;
     }
 
     label {
@@ -83,6 +88,7 @@
       border: 2px solid #000;
       margin-bottom: 15px;
       font-size: 14px;
+      font-family: "Libre Caslon Display", serif;
     }
 
     input:focus {
@@ -133,13 +139,22 @@
     footer {
       text-align: center;
       background-color: #7c1313;
-      color: #f8e3ca;
+      color: #fd8916;
       padding: 8px;
       width: 100%;
+      font-size: 13px;
       position: fixed;
       bottom: 0;
-      font-size: 13px;
+      font-family: "Libre Caslon Display", serif;
     }
+
+    .libre-caslon-display-regular {
+      font-family: "Libre Caslon Display", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+
   </style>
 </head>
 

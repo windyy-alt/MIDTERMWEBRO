@@ -1,5 +1,3 @@
-update nama:
-
 <form method="POST" action="{{ route('profile.update') }}">
     @csrf
     @method('PATCH')

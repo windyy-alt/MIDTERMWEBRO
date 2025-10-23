@@ -1,9 +1,11 @@
+member.blade
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amimir Library - Category Information</title>
+    <title>Amimir Library - Member Information</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&display=swap" rel="stylesheet">
@@ -141,7 +143,7 @@
             text-transform: uppercase;
         }
 
-        .add-book-btn {
+        .add-member-btn {
             background-color: #ffb84d;
             color: #7a1212;
             border: none;
@@ -150,13 +152,8 @@
             cursor: pointer;
             font-weight: bold;
             margin-bottom: 15px;
-            transition: 0.3s;
         }
 
-        .add-book-btn:hover {
-            background-color: #f9cb87;
-            color: #7a1212;
-        }
 
         footer {
             text-align: center;
@@ -191,7 +188,7 @@
             cursor: pointer;
         }
 
-        .action {
+                .action {
             align-items: center;
             gap: 20px;
         }
@@ -219,7 +216,6 @@
         .action-btn.edit:hover {
             background-color: #ffd27f;
         }
-
 
     </style>
 </head>
@@ -253,17 +249,28 @@
     </nav>
 
     <div class="container">
-        <h2>CATEGORY INFORMATION</h2>
+        <h2>Member Information</h2>
 
-        <button class="add-book-btn" onclick="toggleForm()">+ Add Category</button>
+        <button class="add-member-btn" onclick="toggleForm()">+ Add Member</button>
 
-        <form id="addCategoryForm" method="POST" action="{{ route('category.store') }}">
+      
+        <form id="addMemberForm" method="POST" action="{{ route('member.store') }}">
             @csrf
             <div id="method-field"></div>
+
             <div class="form-group">
-                <label>Category Name</label>
-                <input type="text" name="name" id="categoryName" required>
+                <label>Name</label>
+                <input type="text" name="name" id="memberName" required>
             </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" id="memberEmail" required>
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text" name="phone" id="memberPhone" required>
+            </div>
+
             <button type="submit" class="add-btn" id="submitBtn">Save</button>
         </form>
 
@@ -271,28 +278,32 @@
         <table>
             <thead>
                 <tr>
-                    <th>Category ID</th>
-                    <th>Category Name</th>
+                    <th>Member ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                     <th>Created at</th>
                     <th>Updated at</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($categories as $category)
+                @foreach($members as $member)
                 <tr>
-                    <td>{{ str_pad($category->id, 5, '0', STR_PAD_LEFT) }}</td>
-                    <td>{{ $category->name }}</td>
-                    <td>{{ $category->created_at->format('Y-m-d') }}</td>
-                    <td>{{ $category->updated_at->format('Y-m-d') }}</td>
+                    <td>{{ str_pad($member->id, 5, '0', STR_PAD_LEFT) }}</td>
+                    <td>{{ $member->name }}</td>
+                    <td>{{ $member->email }}</td>
+                    <td>{{ $member->phone }}</td>
+                    <td>{{ $member->created_at->format('Y-m-d') }}</td>
+                    <td>{{ $member->updated_at->format('Y-m-d') }}</td>
                     <td class="actions">
-                        
+                
                         <button type="button" class="action-btn edit"
-                            onclick="editCategory({{ $category->id }}, '{{ $category->name }}')">Update</button>
+                            onclick="editMember({{ $member->id }}, '{{ $member->name }}', '{{ $member->email }}', '{{ $member->phone }}')">Update</button>
 
-                      
-                        <form action="{{ route('category.destroy', $category->id) }}" method="POST"
-                            onsubmit="return confirm('Are you sure you want to delete this category?')"
+                       
+                        <form action="{{ route('member.destroy', $member->id) }}" method="POST"
+                            onsubmit="return confirm('Are you sure you want to delete this member?')"
                             style="display:inline;">
                             @csrf
                             @method('DELETE')
@@ -305,40 +316,52 @@
         </table>
     </div>
 
-        <footer>
-            <p>© Amimir Group | Created for ETS</p>
-        </footer>
+  <footer>
+    <p>© Amimir Group | Created for ETS</p>
+  </footer>
 
     <script>
         function toggleForm() {
-            const form = document.getElementById('addCategoryForm');
+            const form = document.getElementById('addMemberForm');
             const methodField = document.getElementById('method-field');
             const submitBtn = document.getElementById('submitBtn');
-            const nameInput = document.getElementById('categoryName');
 
-       
+            const nameInput = document.getElementById('memberName');
+            const emailInput = document.getElementById('memberEmail');
+            const phoneInput = document.getElementById('memberPhone');
+
+          
             if (form.style.display === 'none' || form.style.display === '') {
                 form.style.display = 'block';
             } else {
                 form.style.display = 'none';
             }
 
-            form.action = "{{ route('category.store') }}";
+            form.action = "{{ route('member.store') }}";
             methodField.innerHTML = '';
             submitBtn.textContent = 'Save';
+
             nameInput.value = '';
+            emailInput.value = '';
+            phoneInput.value = '';
         }
 
-        function editCategory(id, name) {
-            const form = document.getElementById('addCategoryForm');
+        function editMember(id, name, email, phone) {
+            const form = document.getElementById('addMemberForm');
             const methodField = document.getElementById('method-field');
             const submitBtn = document.getElementById('submitBtn');
-            const nameInput = document.getElementById('categoryName');
 
+            const nameInput = document.getElementById('memberName');
+            const emailInput = document.getElementById('memberEmail');
+            const phoneInput = document.getElementById('memberPhone');
+
+         
             form.style.display = 'block';
-            form.action = `/category/${id}`;
+            form.action = `/member/${id}`;
             methodField.innerHTML = '<input type="hidden" name="_method" value="PUT">';
             nameInput.value = name;
+            emailInput.value = email;
+            phoneInput.value = phone;
             submitBtn.textContent = 'Update';
         }
     </script>
