@@ -166,7 +166,6 @@
         <h2>Amimir Library</h2>
       </div>
 
-      <!-- Ganti bagian form -->
       <form action="{{ route('login.post') }}" method="POST">
         @csrf
 

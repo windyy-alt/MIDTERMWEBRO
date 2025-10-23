@@ -57,6 +57,12 @@
       backdrop-filter: blur(6px);
     }
 
+    .logo, .logo h2, .logo-img {
+        margin: 0;
+        padding: 0;
+    }
+
+
     .logo {
       display: flex;
       align-items: center;
@@ -221,11 +227,11 @@
       <h2>Amimir Library</h2>
     </div>
     <ul>
-      <li><a href="#">Manage Books</a></li>
-      <li><a href="#">Manage Categories</a></li>
+      <li><a href="{{ route('books.index') }}">Manage Books</a></li>
+      <li><a href="{{ route('category.index')}}">Manage Categories</a></li>
       <li><a href="#">Manage Members</a></li>
       <li><a href="#">Manage Borrows</a></li>
-      <li><a href="#">Profile</a></li>
+      <li><a href="{{ route('profile.edit') }}">Profile</a></li>
       <li>
         <form action="{{ route('logout') }}" method="POST" style="display:inline;">
           @csrf
@@ -272,7 +278,7 @@
       </thead>
       <tbody>
         <tr><td>1</td><td>Book CRUD</td><td>Add, view, edit, delete book data</td><td><strong>Manage Books</strong></td></tr>
-        <tr><td>2</td><td>Book Category CRUD</td><td>Add, edit, delete book categories</td><td><strong>Manage Categories</strong></td></tr>
+        <tr><td>2</td><td>Book Category CRUD</td><td>Add, view, edit, delete book categories</td><td><strong>Manage Categories</strong></td></tr>
         <tr><td>3</td><td>Member CRUD</td><td>Add, view, edit, delete library members</td><td><strong>Manage Members</strong></td></tr>
         <tr><td>4</td><td>Borrow CRUD</td><td>Add borrow records (relations: member + book + staff user)</td><td><strong>Manage Borrows</strong></td></tr>
         <tr><td>5</td><td>Return Book</td><td>Update borrow status from “Borrowed” → “Returned”</td><td><strong>Manage Borrows</strong> → Return button</td></tr>
